@@ -1,0 +1,84 @@
+/* style.css */
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 2rem;
+  color: #333;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  background: #fff;
+  padding: 0.5rem;
+  border: 1px solid #333;
+}
+
+header h1 {
+  margin-bottom: 0.5rem;
+}
+
+nav {
+  display: inline-block;
+  width: 80%;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.flex a {
+  text-decoration: none;
+  color: #0066cc;
+}
+
+h2 {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+h3 {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+ul {
+  margin-left: 1.5rem;
+  padding-left: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 40% 40%;
+  justify-content: space-around;
+  align-items: start;
+  row-gap: 1rem;
+  margin: 1rem 0;
+}
+
+.grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+footer {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #777;
+}
