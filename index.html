@@ -1,80 +1,38 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Sangonomiya Kokomi – Hướng dẫn Build</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genshin Impact – Nhân Vật</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <a href="#main-content" class="skip-link">Bỏ qua đến nội dung chính</a>
-
   <header>
-    <h1>Sangonomiya Kokomi</h1>
     <nav>
-      <ul class="flex">
-        <li><a href="#gioi-thieu">Giới thiệu</a></li>
-        <li><a href="#ky-nang">Kỹ năng</a></li>
-        <li><a href="#build">Hướng dẫn Build</a></li>
+      <ul>
+        <li><a href="#">Trang Chủ</a></li>
+        <li><a href="#">Nhân Vật</a></li>
+        <li><a href="#">Bản Đồ</a></li>
       </ul>
     </nav>
   </header>
 
-  <main id="main-content">
-    <section id="gioi-thieu">
-      <h2>Giới thiệu</h2>
-      <p>
-        Sangonomiya Kokomi là nhân vật 5 sao hệ Thủy trong Genshin Impact.  
-        Cô nổi bật với khả năng hồi máu mạnh mẽ và lối chơi hỗ trợ đội hình hiệu quả.
-      </p>
-    </section>
-
-    <section id="ky-nang">
-      <h2>Kỹ năng</h2>
-      <h3>Kỹ năng Nguyên Tố (E)</h3>
-      <p>
-        Kokomi tạo ra vùng hồi máu liên tục, áp dụng Thủy lên kẻ địch xung quanh.
-      </p>
-      <h3>Kỹ năng Trận Đánh Tối Thượng (Q)</h3>
-      <p>
-        Kích hoạt sau E, tăng lượng hồi và tạo sát thương Thủy diện rộng.
-      </p>
-    </section>
-
-    <section id="build">
-      <h2>Hướng dẫn Build</h2>
-
-      <h3>Vũ khí gợi ý</h3>
+  <main>
+    <aside class="character-list">
       <ul>
-        <li>Everlasting Moonglow (5★) – Tăng HP và hồi máu.</li>
-        <li>Prototype Amber (4★) – Dễ có, tăng HP% và năng lượng.</li>
+        <li onclick="showCharacter('ayaka')">Kamisato Ayaka</li>
+        <li onclick="showCharacter('raiden')">Raiden Shogun</li>
+        <li onclick="showCharacter('kokomi')">Sangonomiya Kokomi</li>
+        <li onclick="showCharacter('yae')">Yae Miko</li>
+        <li onclick="showCharacter('mizuki')">Yumemizuki Mizuki</li>
       </ul>
+    </aside>
 
-      <h3>Bộ Thánh Di Vật</h3>
-      <div class="grid">
-        <div>
-          <img src="images/ocean-hued-clam.png" alt="Ocean-Hued Clam">
-          <p>Bộ 4 – Ocean-Hued Clam: Tăng hiệu quả hồi máu và sát thương phụ.</p>
-        </div>
-        <div>
-          <img src="images/flower-of-paradise-lost.png" alt="Flower of Paradise Lost">
-          <p>Bộ 4 – Flower of Paradise Lost: Tăng sát thương nguyên tố và hỗ trợ đồng đội.</p>
-        </div>
-      </div>
-
-      <h3>Chỉ số ưu tiên</h3>
-      <ul>
-        <li>Đồng hồ: HP%</li>
-        <li>Ly: Hiệu quả hồi máu / HP%</li>
-        <li>Mũ: HP% / Hiệu quả hồi máu</li>
-      </ul>
+    <section class="character-info" id="character-info">
+      <h2>Chọn một nhân vật để xem thông tin</h2>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 Genshin Build Guide</p>
-  </footer>
-
+  <script src="script.js"></script>
 </body>
 </html>

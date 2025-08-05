@@ -1,84 +1,57 @@
-/* style.css */
-
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 2rem;
-  color: #333;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out;
+  color: #fff;
 }
 
-.skip-link {
-  position: absolute;
-  left: -999px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-.skip-link:focus {
-  left: 1rem;
-  top: 1rem;
-  width: auto;
-  height: auto;
-  background: #fff;
-  padding: 0.5rem;
-  border: 1px solid #333;
+header {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
 }
 
-header h1 {
-  margin-bottom: 0.5rem;
-}
-
-nav {
-  display: inline-block;
-  width: 80%;
-}
-
-.flex {
+nav ul {
+  list-style: none;
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  display: flex;
+  height: 100vh;
+}
+
+.character-list {
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+
+.character-list ul {
   list-style: none;
   padding: 0;
 }
 
-.flex a {
-  text-decoration: none;
-  color: #0066cc;
+.character-list li {
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-h2 {
-  margin-top: 2rem;
-  font-size: 1.5rem;
-}
-
-h3 {
-  margin-top: 1rem;
-  font-size: 1.2rem;
-}
-
-ul {
-  margin-left: 1.5rem;
-  padding-left: 0;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 40% 40%;
-  justify-content: space-around;
-  align-items: start;
-  row-gap: 1rem;
-  margin: 1rem 0;
-}
-
-.grid img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-footer {
-  margin-top: 3rem;
-  font-size: 0.9rem;
-  text-align: center;
-  color: #777;
+.character-info {
+  flex-grow: 1;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
 }
