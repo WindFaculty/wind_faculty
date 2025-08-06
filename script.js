@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     characterImages.forEach(img => {
-        img.addEventListener('click', upDate);
+        img.addEventListener('click', (event) => upDate(event.target));
         img.addEventListener('mouseout', undo);
     });
 
@@ -46,6 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Click event triggered on image.');
         console.log('Image alt:', previewPic.alt);
         console.log('Image src:', previewPic.src);
+
+        if (!previewPic.alt || !characters[previewPic.alt]) {
+            console.error('Invalid character data for:', previewPic.alt);
+            return;
+        }
 
         // Cập nhật hình ảnh
         imageDiv.innerHTML = '';
