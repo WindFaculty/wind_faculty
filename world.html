@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Impact - Home</title>
+    <title>Genshin Impact - Thế Giới</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -12,6 +12,11 @@
             padding: 0;
             background: linear-gradient(135deg, #e0f7fa 0%, #80deea 100%);
             overflow-x: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        body.scrolled {
+            background: linear-gradient(135deg, #b2ebf2 0%, #4fc3f7 100%);
         }
 
         a.skip-main {
@@ -29,9 +34,9 @@
             top: 10px;
             width: auto;
             height: auto;
-            background: #0288d1;
+            background: linear-gradient(to right, #0288d1, #4fc3f7);
             color: white;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -55,12 +60,13 @@
             font-weight: 600;
             padding: 12px 24px;
             border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
 
         nav a:hover {
             background-color: #01579b;
             transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         nav a.active {
@@ -68,24 +74,54 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-video {
-            display: block;
-            margin: 20px auto;
-            border: 4px solid #0288d1;
-            padding: 12px;
-            border-radius: 12px;
-            max-width: 85%;
-            transition: transform 0.5s ease;
+        .world-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 30px;
             animation: fadeIn 1.5s ease-in-out;
         }
 
-        .hero-video:hover {
-            transform: scale(1.05) translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        .world-flex .world-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .world-flex img {
+            border: 4px solid transparent;
+            border-image: linear-gradient(to right, #0288d1, #4fc3f7) 1;
+            padding: 12px;
+            border-radius: 12px;
+            width: 300px;
+            transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .world-flex img:hover {
+            transform: rotate(5deg);
+            opacity: 0.9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(2, 136, 209, 0.5);
+        }
+
+        .world-flex .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(2, 88, 155, 0.9), rgba(2, 88, 155, 0.7));
+            color: white;
+            padding: 12px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .world-flex .world-card:hover .caption {
+            transform: translateY(0);
         }
 
         main {
-            padding: 30px;
             text-align: center;
             animation: fadeIn 1.5s ease-in-out;
         }
@@ -95,6 +131,11 @@
             font-size: 2.5em;
             margin-bottom: 20px;
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        h1:hover {
+            transform: scale(1.05);
         }
 
         p {
@@ -109,12 +150,13 @@
             right: 20px;
             background: #0288d1;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 50%;
             text-decoration: none;
             font-size: 1em;
             opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2s infinite;
         }
 
         .back-to-top.visible {
@@ -125,6 +167,17 @@
         .back-to-top:hover {
             transform: translateY(-5px);
             background: #01579b;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: linear-gradient(to right, #0288d1, #0277bd);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
 
         @keyframes fadeIn {
@@ -132,9 +185,16 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
         @media (max-width: 768px) {
-            .hero-video {
-                max-width: 95%;
+            .world-flex img {
+                width: 100%;
+                max-width: 300px;
             }
 
             nav {
@@ -149,25 +209,35 @@
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-main">Skip to Main Content</a>
+    <a href="#main-content" class="skip-main">Bỏ qua đến nội dung chính</a>
     <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="characters.html">Characters</a>
-        <a href="world.html">World</a>
+        <a href="index.html">Trang Chủ</a>
+        <a href="characters.html">Nhân Vật</a>
+        <a href="world.html" class="active">Thế Giới</a>
     </nav>
     <main id="main-content">
-        <h1>Welcome to Genshin Impact</h1>
-        <p>Explore the vast world of Teyvat in this open-world action RPG!</p>
-        <video src="https://genshin.hoyoverse.com/_nuxt/videos/bg.3e78e80.mp4" autoplay muted loop class="hero-video" alt="Genshin Impact World Video"></video>
+        <h1>Thế Giới Teyvat</h1>
+        <p>Khám phá những vùng đất tuyệt đẹp trong Genshin Impact!</p>
+        <div class="world-flex">
+            <div class="world-card">
+                <img src="https://gamen.vn/storage/2022/11/Genshin-Impact.jpg" alt="Bản Đồ Teyvat">
+                <div class="caption">Bản Đồ Teyvat</div>
+            </div>
+        </div>
     </main>
+    <footer>
+        <p>&copy; 2025 Genshin Impact Fan Site. Mọi quyền được bảo lưu.</p>
+    </footer>
     <a href="#main-content" class="back-to-top">↑</a>
     <script>
         const backToTop = document.querySelector('.back-to-top');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 backToTop.classList.add('visible');
+                document.body.classList.add('scrolled');
             } else {
                 backToTop.classList.remove('visible');
+                document.body.classList.remove('scrolled');
             }
         });
     </script>

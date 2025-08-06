@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Impact - Home</title>
+    <title>Genshin Impact - Characters</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -68,24 +68,57 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-video {
-            display: block;
-            margin: 20px auto;
-            border: 4px solid #0288d1;
-            padding: 12px;
-            border-radius: 12px;
-            max-width: 85%;
-            transition: transform 0.5s ease;
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
             animation: fadeIn 1.5s ease-in-out;
         }
 
-        .hero-video:hover {
-            transform: scale(1.05) translateY(-10px);
+        .character-grid .character-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .character-grid img {
+            border: 4px solid #0288d1;
+            padding: 12px;
+            border-radius: 12px;
+            width: 100%;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .character-grid img:hover {
+            transform: scale(1.1);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
+        .character-grid img:nth-child(odd) {
+            border-radius: 20px;
+        }
+
+        .character-grid .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(2, 88, 155, 0.8);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .character-grid .character-card:hover .caption {
+            transform: translateY(0);
+        }
+
         main {
-            padding: 30px;
             text-align: center;
             animation: fadeIn 1.5s ease-in-out;
         }
@@ -133,8 +166,8 @@
         }
 
         @media (max-width: 768px) {
-            .hero-video {
-                max-width: 95%;
+            .character-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             nav {
@@ -146,19 +179,46 @@
                 padding: 10px;
             }
         }
+
+        @media (max-width: 480px) {
+            .character-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <a href="#main-content" class="skip-main">Skip to Main Content</a>
     <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="characters.html">Characters</a>
+        <a href="index.html">Home</a>
+        <a href="characters.html" class="active">Characters</a>
         <a href="world.html">World</a>
     </nav>
     <main id="main-content">
-        <h1>Welcome to Genshin Impact</h1>
-        <p>Explore the vast world of Teyvat in this open-world action RPG!</p>
-        <video src="https://genshin.hoyoverse.com/_nuxt/videos/bg.3e78e80.mp4" autoplay muted loop class="hero-video" alt="Genshin Impact World Video"></video>
+        <h1>Genshin Impact Characters</h1>
+        <p>Meet some of the iconic characters of Teyvat!</p>
+        <div class="character-grid">
+            <div class="character-card">
+                <img src="https://fastcdn.hoyoverse.com/content-v2/hk4e/129697/c2cf4a117398e656a2556274be0fc7c0_2065609257065575587.png" alt="Mizuki">
+                <div class="caption">Mizuki</div>
+            </div>
+            <div class="character-card">
+                <img src="https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20220208/2022020815120462184.png" alt="Yae Miko">
+                <div class="caption">Yae Miko</div>
+            </div>
+            <div class="character-card">
+                <img src="https://act-webstatic.hoyoverse.com/upload/contentweb/2022/07/21/8ca5953fb331d71bc880496f5e8b7745_5746095903625469716.png" alt="Sangonomiya Kokomi">
+                <div class="caption">Sangonomiya Kokomi</div>
+            </div>
+            <div class="character-card">
+                <img src="https://fastcdn.hoyoverse.com/content-v2/hk4e/113447/3b7275b855b2a4176733dbd40947af74_213564897681426964.png" alt="Furina">
+                <div class="caption">Furina</div>
+            </div>
+            <div class="character-card">
+                <img src="https://act-webstatic.hoyoverse.com/upload/contentweb/2022/07/21/fdcbc9ef8859b7077d92ae38d925e15e_6468451582670898712.png" alt="Raiden Shogun">
+                <div class="caption">Raiden Shogun</div>
+            </div>
+        </div>
     </main>
     <a href="#main-content" class="back-to-top">↑</a>
     <script>
