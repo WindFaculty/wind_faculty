@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Impact - Characters</title>
+    <title>Genshin Impact - Nhân Vật</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -12,6 +12,11 @@
             padding: 0;
             background: linear-gradient(135deg, #e0f7fa 0%, #80deea 100%);
             overflow-x: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        body.scrolled {
+            background: linear-gradient(135deg, #b2ebf2 0%, #4fc3f7 100%);
         }
 
         a.skip-main {
@@ -29,9 +34,9 @@
             top: 10px;
             width: auto;
             height: auto;
-            background: #0288d1;
+            background: linear-gradient(to right, #0288d1, #4fc3f7);
             color: white;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -55,17 +60,82 @@
             font-weight: 600;
             padding: 12px 24px;
             border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
 
         nav a:hover {
             background-color: #01579b;
             transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         nav a.active {
             background-color: #01579b;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #image {
+            width: 100%;
+            max-width: 600px;
+            min-height: 400px;
+            margin: 20px auto;
+            background-size: cover;
+            background-position: center;
+            border: 4px solid transparent;
+            border-image: linear-gradient(to right, #0288d1, #4fc3f7) 1;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            font-size: 1.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: background-image 0.5s ease;
+            animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+        }
+
+        #character-info {
+            background: linear-gradient(to top, rgba(2, 88, 155, 0.9), rgba(2, 88, 155, 0.7));
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            width: 90%;
+            max-width: 500px;
+            text-align: left;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        #character-info h2 {
+            margin: 0 0 10px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        #character-info p {
+            margin: 8px 0;
+            font-size: 1em;
+        }
+
+        #restore-button {
+            display: none;
+            background: #0288d1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1em;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #restore-button:hover {
+            background: #01579b;
+            transform: scale(1.05);
         }
 
         .character-grid {
@@ -85,16 +155,18 @@
         }
 
         .character-grid img {
-            border: 4px solid #0288d1;
+            border: 4px solid transparent;
+            border-image: linear-gradient(to right, #0288d1, #4fc3f7) 1;
             padding: 12px;
             border-radius: 12px;
             width: 100%;
             transition: transform 0.5s ease, box-shadow 0.5s ease;
+            cursor: pointer;
         }
 
         .character-grid img:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(2, 136, 209, 0.5);
         }
 
         .character-grid img:nth-child(odd) {
@@ -106,9 +178,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(2, 88, 155, 0.8);
+            background: linear-gradient(to top, rgba(2, 88, 155, 0.9), rgba(2, 88, 155, 0.7));
             color: white;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
             transform: translateY(100%);
             transition: transform 0.3s ease;
@@ -128,6 +200,11 @@
             font-size: 2.5em;
             margin-bottom: 20px;
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        h1:hover {
+            transform: scale(1.05);
         }
 
         p {
@@ -142,12 +219,13 @@
             right: 20px;
             background: #0288d1;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 50%;
             text-decoration: none;
             font-size: 1em;
             opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2s infinite;
         }
 
         .back-to-top.visible {
@@ -158,11 +236,28 @@
         .back-to-top:hover {
             transform: translateY(-5px);
             background: #01579b;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: linear-gradient(to right, #0288d1, #0277bd);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         @media (max-width: 768px) {
@@ -178,25 +273,43 @@
             nav a {
                 padding: 10px;
             }
+
+            #image {
+                min-height: 300px;
+            }
+
+            #character-info {
+                width: 95%;
+                font-size: 0.85em;
+            }
         }
 
         @media (max-width: 480px) {
             .character-grid {
                 grid-template-columns: 1fr;
             }
+
+            #image {
+                min-height: 250px;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-main">Skip to Main Content</a>
+    <a href="#main-content" class="skip-main">Bỏ qua đến nội dung chính</a>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="characters.html" class="active">Characters</a>
-        <a href="world.html">World</a>
+        <a href="index.html">Trang Chủ</a>
+        <a href="characters.html" class="active">Nhân Vật</a>
+        <a href="world.html">Thế Giới</a>
     </nav>
     <main id="main-content">
-        <h1>Genshin Impact Characters</h1>
-        <p>Meet some of the iconic characters of Teyvat!</p>
+        <h1>Nhân Vật Genshin Impact</h1>
+        <p>Gặp gỡ những nhân vật biểu tượng của Teyvat!</p>
+        <div id="image">
+            Di chuột lên hình ảnh bên dưới để hiển thị tại đây.
+            <div id="character-info"></div>
+            <a id="restore-button" href="#">Khôi phục</a>
+        </div>
         <div class="character-grid">
             <div class="character-card">
                 <img src="https://fastcdn.hoyoverse.com/content-v2/hk4e/129697/c2cf4a117398e656a2556274be0fc7c0_2065609257065575587.png" alt="Mizuki">
@@ -220,14 +333,20 @@
             </div>
         </div>
     </main>
+    <footer>
+        <p>&copy; 2025 Genshin Impact Fan Site. Mọi quyền được bảo lưu.</p>
+    </footer>
     <a href="#main-content" class="back-to-top">↑</a>
+    <script src="script.js"></script>
     <script>
         const backToTop = document.querySelector('.back-to-top');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 backToTop.classList.add('visible');
+                document.body.classList.add('scrolled');
             } else {
                 backToTop.classList.remove('visible');
+                document.body.classList.remove('scrolled');
             }
         });
     </script>
