@@ -1,57 +1,50 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-size: cover;
-  background-position: center;
-  transition: background-image 0.5s ease-in-out;
-  color: #fff;
+/* Tablet View: ≥772px */
+@media screen and (min-width: 772px) {
+  main {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  .character-list,
+  .character-info {
+    width: 45vw;
+    max-width: 45vw;
+    box-sizing: border-box;
+  }
+
+  .character-info img {
+    max-height: 30vh;
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .character-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .world-flex img {
+    width: 45vw;
+    max-width: 45vw;
+    height: auto;
+  }
 }
 
-header {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 10px;
-}
+/* Large Screen View: ≥998px */
+@media screen and (min-width: 998px) {
+  .character-list,
+  .character-info {
+    width: 30vw;
+    max-width: 30vw;
+  }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 0;
-  margin: 0;
-}
+  .character-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-main {
-  display: flex;
-  height: 100vh;
-}
-
-.character-list {
-  width: 200px;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 20px;
-}
-
-.character-list ul {
-  list-style: none;
-  padding: 0;
-}
-
-.character-list li {
-  margin-bottom: 15px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.character-info {
-  flex-grow: 1;
-  padding: 40px;
-  background-color: rgba(0, 0, 0, 0.5);
-  overflow-y: auto;
+  .world-flex img {
+    width: 30vw;
+    max-width: 30vw;
+  }
 }
