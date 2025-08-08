@@ -1,50 +1,163 @@
-/* Tablet View: ≥772px */
+/* ========== Base (mobile-first) ========== */
+/* Trải nghiệm mặc định là light */
+:root {
+  --bg: #ffffff;
+  --fg: #1b1b1b;
+  --card-bg: #f6f7f9;
+  --card-fg: #222;
+  --card-border: #2b7de9;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Mặc định cho phép smooth scroll (bị tắt ở reduced motion) */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+/* Lưới 1 cột cho mobile + gap 10px (không dùng media query ở mobile) */
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px; /* yêu cầu 10px cả hàng lẫn cột */
+  padding: 16px;
+}
+
+/* Figure là item chính để tạo viền, nền, bo góc */
+figure {
+  margin: 0;
+  padding: 10px;
+  background: var(--card-bg);
+  color: var(--card-fg);
+  border: 2px solid var(--card-border);
+  border-radius: 12px; /* mobile có bo nhẹ để đẹp; sẽ đổi ở tablet/desktop */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Giúp ảnh ăn theo border-radius của figure */
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+
+/* Chữ mô tả trong figure */
+figcaption {
+  padding-top: 8px;
+  font-weight: 600;
+}
+
+/* Nội dung đoạn văn được thay mới (phần HTML sẽ cập nhật) */
+p {
+  margin: 0 0 1rem 0;
+}
+
+/* ========== Tablet (>= 772px) ========== */
 @media screen and (min-width: 772px) {
+  /* Lưới 2 cột */
   main {
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: flex-start;
-  }
-
-  .character-list,
-  .character-info {
-    width: 45vw;
-    max-width: 45vw;
-    box-sizing: border-box;
-  }
-
-  .character-info img {
-    max-height: 30vh;
-    height: auto;
-    width: 100%;
-    object-fit: contain;
-  }
-
-  .character-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .world-flex img {
-    width: 45vw;
-    max-width: 45vw;
-    height: auto;
+  /* Tạo hình tròn cho figure (giữ nội dung bám theo) */
+  figure {
+    border-radius: 50%;
+    /* Đảm bảo figure là hình tròn hợp lý trong lưới:
+       Có thể dùng aspect-ratio để tránh méo. */
+    aspect-ratio: 1 / 1;
+    /* Nội dung bên trong vẫn hiển thị ổn */
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 1fr auto; /* ảnh trên, caption dưới */
+  }
+
+  /* Ảnh sẽ fill theo hình tròn */
+  figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Figure cuối cùng chiếm cả 2 cột */
+  main > figure:last-of-type {
+    grid-column: 1 / -1; /* span 2 columns */
   }
 }
 
-/* Large Screen View: ≥998px */
-@media screen and (min-width: 998px) {
-  .character-list,
-  .character-info {
-    width: 30vw;
-    max-width: 30vw;
-  }
-
-  .character-grid {
+/* ========== Large screens (>= 992px) ========== */
+@media screen and (min-width: 992px) {
+  /* Lưới 3 cột */
+  main {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .world-flex img {
-    width: 30vw;
-    max-width: 30vw;
+  /* Bỏ bo góc trên tất cả figure */
+  figure {
+    border-radius: 0;
+    aspect-ratio: auto;
+    display: flex;
+  }
+
+  figure img {
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Mỗi phần tử thứ 3 chiếm 2 cột (span 2) */
+  main > figure:nth-of-type(3n) {
+    grid-column: span 2;
+  }
+}
+
+/* ========== User preference: Reduced motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto; /* YÊU CẦU: tắt scroll behavior */
+  }
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ========== User preference: Dark mode ========== */
+/* Mặc định là light, nên chỉ đổi trong dark */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0f11;
+    --fg: #e9eaee;
+    --card-bg: #1a1c20;  /* nền figure tối */
+    --card-fg: #ffec80;  /* chữ trong figure sáng vàng-ish */
+    --card-border: #000000; /* viền figure đen */
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  figure {
+    background: var(--card-bg);
+    color: var(--card-fg);
+    border-color: var(--card-border);
+  }
+
+  a {
+    color: #89b4ff;
   }
 }
