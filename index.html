@@ -4,31 +4,122 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wind Faculty</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style_home.css">
+
+    <link href="path/to/css/bootstrap-5.3.8-dist/bootstrap.min.css" rel="stylesheet">
+    <script src="path/to/js/bootstrap-5.3.8-dist/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <a href="#main-content" class="skip-main">Skip to Main Content</a>
-    <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="characters.html">My project</a>
-        <a href="world.html">World</a>
-    </nav>
-    <main id="main-content">
-        <h1>Welcome to Genshin Impact</h1>
-        <p>Explore the vast world of Teyvat in this open-world action RPG!</p>
-        <video src="https://genshin.hoyoverse.com/_nuxt/videos/bg.3e78e80.mp4" autoplay muted loop class="hero-video" alt="Genshin Impact World Video"></video>
-    </main>
-    <a href="#main-content" class="back-to-top">↑</a>
-    <script>
-        const backToTop = document.querySelector('.back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-    </script>
+  <!-- HEADER / NAV -->
+  <header>
+    <div class="container">
+      <nav class="nav" aria-label="Chính">
+        <div class="brand"><a href="#home">Wind Faculty</a></div>
+        <button class="burger" aria-label="Mở menu" id="burger">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="">My Projects</a>
+          <a href="#about">About</a>
+          <a href="https://example.com/blog" target="_blank" rel="noopener">My Blog</a>
+          <a href="https://example.com/wonyoung" target="_blank" rel="noopener">WonYoung</a>
+          <a class="nav-cta" href="#contact">Liên hệ</a>
+        </div>
+      </nav>
+      <div class="mobile" id="mobileMenu">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="https://example.com/blog" target="_blank" rel="noopener">My Blog</a>
+        <a href="https://example.com/wonyoung" target="_blank" rel="noopener">WonYoung</a>
+        <a href="#contact">Liên hệ</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <h1>Chào mừng đến với thế giới của bạn</h1>
+          <p>Khám phá sự sáng tạo qua <strong>code</strong> và <strong>thiết kế</strong>. Đây là phần giới thiệu ngắn ở khu vực hero.</p>
+          <a class="btn" href="html/my_projects">Xem dự án</a>
+        </div>
+        <div class="avatar">
+          <img src="https://picsum.photos/600/400?grayscale" alt="Ảnh đại diện minh họa">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container panel">
+        <h2>Giới thiệu</h2>
+        <p>Tôi là một lập trình viên yêu thích giao thoa giữa chức năng và thẩm mỹ. Mục tiêu là mang lại sản phẩm sạch, dễ mở rộng và có trải nghiệm tốt.</p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <h2>Kỹ năng</h2>
+        <div class="skills-grid">
+          <div class="skill"><strong>HTML5</strong><h4>Semantic / SEO</h4></div>
+          <div class="skill"><strong>CSS3</strong><h4>Flex/Grid</h4></div>
+          <div class="skill"><strong>JavaScript</strong><h4>ESNext</h4></div>
+          <div class="skill"><strong>React</strong><h4>SPA</h4></div>
+          <div class="skill"><strong>Node.js</strong><h4>API</h4></div>
+          <div class="skill"><strong>Git</strong><h4>Flow</h4></div>
+          <div class="skill"><strong>RESTful API</strong><h4>Design</h4></div>
+          <div class="skill"><strong>Vite</strong><h4>Tooling</h4></div>
+          <div class="skill"><strong>TypeScript</strong><h4>Typing</h4></div>
+          <div class="skill"><strong>Java</strong><h4>OOP</h4></div>
+          <div class="skill"><strong>MongoDB</strong><h4>NoSQL</h4></div>
+          <div class="skill"><strong>SQL Server</strong><h4>RDBMS</h4></div>
+        </div>
+      </div>
+    </section>
+
+  
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="container">
+        <h2>Học vấn</h2>
+        <div class="timeline">
+          <article class="item">
+            <h3>Đại học (Ví dụ)</h3>
+            <div class="meta">2022 – 2025</div>
+            <p>Chuyên ngành Kỹ thuật phần mềm.</p>
+          </article>
+          <article class="item">
+            <h3>THPT Chuyên (Ví dụ)</h3>
+            <div class="meta">2019 – 2022</div>
+            <p>Chuyên Hóa / Toán (ví dụ).</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container panel">
+        <h2>Liên hệ</h2>
+        <p>Gửi email: <a href="mailto:tranxuankhoa777@gmail.com">Gmail</a> hoặc kết nối qua <a href="https://www.facebook.com/springfaculty.2k5" rel="noopener">Facebook</a>.</p>
+      </div>
+    </section>
+  </main>
+
+
+  <script>
+    const burger = document.getElementById('burger');
+    const mobile = document.getElementById('mobileMenu');
+    const y = document.getElementById('y');
+    y.textContent = new Date().getFullYear();
+    burger?.addEventListener('click', ()=> mobile.classList.toggle('open'));
+  </script>
 </body>
 </html>

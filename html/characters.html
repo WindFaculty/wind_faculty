@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact - Nhân Vật</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-main">Bỏ qua đến nội dung chính</a>
+    <nav>
+        <a href="index.html">Trang Chủ</a>
+        <a href="characters.html" class="active">Nhân Vật</a>
+        <a href="world.html">Thế Giới</a>
+    </nav>
+    <main id="main-content">
+        <h1>Nhân Vật Genshin Impact</h1>
+        <p>Gặp gỡ những nhân vật biểu tượng của Teyvat!</p>
+        <div id="image">
+            Di chuột lên hình ảnh bên dưới để hiển thị tại đây.
+            <div id="character-info"></div>
+            <a id="restore-button" href="#">Khôi phục</a>
+        </div>
+        <div class="character-grid">
+            <div class="character-card">
+                <img src="https://fastcdn.hoyoverse.com/content-v2/hk4e/129697/c2cf4a117398e656a2556274be0fc7c0_2065609257065575587.png" alt="Mizuki">
+                <div class="caption">Mizuki</div>
+            </div>
+            <div class="character-card">
+                <img src="https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20220208/2022020815120462184.png" alt="Yae Miko">
+                <div class="caption">Yae Miko</div>
+            </div>
+            <div class="character-card">
+                <img src="https://act-webstatic.hoyoverse.com/upload/contentweb/2022/07/21/8ca5953fb331d71bc880496f5e8b7745_5746095903625469716.png" alt="Sangonomiya Kokomi">
+                <div class="caption">Sangonomiya Kokomi</div>
+            </div>
+            <div class="character-card">
+                <img src="https://fastcdn.hoyoverse.com/content-v2/hk4e/113447/3b7275b855b2a4176733dbd40947af74_213564897681426964.png" alt="Furina">
+                <div class="caption">Furina</div>
+            </div>
+            <div class="character-card">
+                <img src="https://act-webstatic.hoyoverse.com/upload/contentweb/2022/07/21/fdcbc9ef8859b7077d92ae38d925e15e_6468451582670898712.png" alt="Raiden Shogun">
+                <div class="caption">Raiden Shogun</div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Genshin Impact Fan Site. Mọi quyền được bảo lưu.</p>
+    </footer>
+    <a href="#main-content" class="back-to-top">↑</a>
+    <script src="script.js"></script>
+    <script>
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+                document.body.classList.add('scrolled');
+            } else {
+                backToTop.classList.remove('visible');
+                document.body.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

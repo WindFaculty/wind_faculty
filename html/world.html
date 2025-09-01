@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact - Thế Giới</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-main">Bỏ qua đến nội dung chính</a>
+    <nav>
+        <a href="index.html">Trang Chủ</a>
+        <a href="characters.html">Nhân Vật</a>
+        <a href="world.html" class="active">Thế Giới</a>
+    </nav>
+    <main id="main-content">
+        <h1>Thế Giới Teyvat</h1>
+        <p>Khám phá những vùng đất tuyệt đẹp trong Genshin Impact!</p>
+        <div class="world-flex">
+            <div class="world-card">
+                <img src="https://gamen.vn/storage/2022/11/Genshin-Impact.jpg" alt="Bản Đồ Teyvat">
+                <div class="caption">Bản Đồ Teyvat</div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Genshin Impact Fan Site. Mọi quyền được bảo lưu.</p>
+    </footer>
+    <a href="#main-content" class="back-to-top">↑</a>
+    <script>
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+                document.body.classList.add('scrolled');
+            } else {
+                backToTop.classList.remove('visible');
+                document.body.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

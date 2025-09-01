@@ -1,0 +1,120 @@
+:root {
+  --bg:#0f1220;
+  --panel:#151932;
+  --muted:#aab0c0;
+  --text:#eef1ff;
+  --brand:#7c9cf5;
+  --accent:#8ef1d6;
+  --card:#111428;
+  --br:18px;
+  --shadow:0 10px 30px rgba(0,0,0,.25);
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  color:var(--text);
+  background:linear-gradient(180deg,#0d1020, #0f1220 40%, #0d1020);
+}
+a {color:var(--brand); text-decoration:none}
+img {max-width:100%; display:block}
+.container {width:min(1100px, 92%); margin-inline:auto}
+/* Header / Nav */
+header {
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(180%) blur(10px);
+  background:rgba(13,16,32,.6);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav {display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+.brand {font-weight:700; letter-spacing:.5px}
+.brand a {color:#fff}
+.nav-links {display:flex; gap:18px; align-items:center}
+.nav-links a {padding:8px 12px; border-radius:10px}
+.nav-links a:hover {background:rgba(255,255,255,.06)}
+.nav-cta {
+  padding:8px 14px; border-radius:12px;
+  background:var(--brand); color:#0b0f1e; font-weight:600
+}
+/* Hero */
+.hero {padding:80px 0 40px}
+.hero-wrap {
+  display:grid; gap:30px; grid-template-columns: 1.2fr .8fr; align-items:center
+}
+.hero h1 {font-size:clamp(28px, 4vw, 44px); line-height:1.2; margin:0 0 10px}
+.hero p {color:var(--muted); margin:0 0 20px}
+.hero .btn {
+  display:inline-block; padding:10px 16px; border-radius:12px;
+  background:var(--accent); color:#081018; font-weight:700
+}
+.avatar {
+  background:radial-gradient(120px 120px at 70% 30%, rgba(140,240,214,.2), transparent 60%);
+  padding:14px; border-radius:20px; border:1px solid rgba(255,255,255,.06)
+}
+/* Sections */
+section {padding:64px 0}
+section h2 {font-size:clamp(24px,3vw,32px); margin:0 0 24px}
+.panel {
+  background:var(--panel); border:1px solid rgba(255,255,255,.06);
+  border-radius:var(--br); padding:24px; box-shadow:var(--shadow)
+}
+/* Skills */
+.skills-grid {
+  display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(140px,1fr))
+}
+.skill {
+  background:var(--card); border:1px solid rgba(255,255,255,.06);
+  padding:12px 14px; border-radius:14px; text-align:center
+}
+.skill h4 {margin:6px 0 0; font-size:15px}
+/* Experience / Education */
+.timeline {display:grid; gap:18px}
+.item {
+  background:var(--card); border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; padding:16px
+}
+.item h3 {margin:0 0 4px}
+.item .meta {color:var(--muted); font-size:14px}
+/* Projects */
+.projects-grid {
+  display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))
+}
+.card {
+  background:var(--card); border:1px solid rgba(255,255,255,.06);
+  border-radius:16px; overflow:hidden; display:flex; flex-direction:column
+}
+.card img {aspect-ratio:16/10; object-fit:cover; background:#0b0e1c}
+.card .body {padding:14px}
+.card h5 {margin:0 0 6px; font-size:16px}
+.chip {
+  display:inline-block; font-size:12px; padding:2px 8px; border-radius:999px;
+  background:rgba(124,156,245,.15); border:1px solid rgba(124,156,245,.35);
+  margin-right:6px
+}
+.card .row {display:flex; gap:8px; margin-top:10px}
+.button {
+  display:inline-block; padding:8px 12px; border-radius:10px;
+  background:var(--brand); color:#0b0f1e; font-weight:700
+}
+/* Footer */
+footer {
+  padding:36px 0; color:var(--muted);
+  border-top:1px solid rgba(255,255,255,.06)
+}
+/* Responsive */
+@media (max-width: 860px){
+  .hero-wrap{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .burger{display:inline-flex}
+}
+.burger {display:none; gap:6px; padding:8px 10px;
+  border-radius:10px; border:1px solid rgba(255,255,255,.1)}
+.dot {width:18px; height:2px; background:#fff}
+.mobile {display:none}
+.mobile.open {
+  display:flex; flex-direction:column; gap:10px; padding:10px;
+  border-top:1px solid rgba(255,255,255,.06)
+}
+.mobile a {
+  padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.04)
+}
