@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact - Nhân Vật</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-main">Bỏ qua đến nội dung chính</a>
+    <nav>
+        <a href="index.html">Trang Chủ</a>
+        <a href="characters.html" class="active">Nhân Vật</a>
+        <a href="world.html">Thế Giới</a>
+    </nav>
+    <main id="main-content">
+        <h1>Nhân Vật Genshin Impact</h1>
+        <p>Gặp gỡ những nhân vật biểu tượng của Teyvat!</p>
+        <div id="image">
+            Di chuột lên hình ảnh bên dưới để hiển thị tại đây.
+            <div id="character-info"></div>
+            <a id="restore-button" href="#">Khôi phục</a>
+        </div>
+        <div class="character-grid">
+            <div class="character-card">
+                <img src="https://fastcdn.hoyoverse.com/content-v2/hk4e/129697/c2cf4a117398e656a2556274be0fc7c0_2065609257065575587.png" alt="Mizuki">
+                <div class="caption">Mizuki</div>
+            </div>
+            <div class="character-card">
+                <img src="https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20220208/2022020815120462184.png" alt="Yae Miko">
+                <div class="caption">Yae Miko</div>
+            </div>
+            <div class="character-card">
+                <img src="https://act-webstatic.hoyoverse.com/upload/contentweb/2022/07/21/8ca5953fb331d71bc880496f5e8b7745_5746095903625469716.png" alt="Sangonomiya Kokomi">
+                <div class="caption">Sangonomiya Kokomi</div>
+            </div>
+            <div class="character-card">
+                <img src="https://fastcdn.hoyoverse.com/content-v2/hk4e/113447/3b7275b855b2a4176733dbd40947af74_213564897681426964.png" alt="Furina">
+                <div class="caption">Furina</div>
+            </div>
+            <div class="character-card">
+                <img src="https://act-webstatic.hoyoverse.com/upload/contentweb/2022/07/21/fdcbc9ef8859b7077d92ae38d925e15e_6468451582670898712.png" alt="Raiden Shogun">
+                <div class="caption">Raiden Shogun</div>
+            </div>
+        </div>
+    </main>
+    <section id="videos" class="section">
+  <div class="container">
+    <h2>Video mới từ YouTube</h2>
+    <div id="yt-grid" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));"></div>
+  </div>
+</section>
+    <script>
+const HANDLE = '@nikkiwaylwp';
+const API_KEY = 'YOUR_API_KEY'; // <- thay API key của bạn
+
+async function fetchUploadsPlaylistId(handle) {
+  const url = new URL('https://www.googleapis.com/youtube/v3/channels');
+  url.search = new URLSearchParams({
+    part: 'contentDetails',
+    forHandle: handle,
+    key: API_KEY
+  });
+  const r = await fetch(url);
+  const data = await r.json();
+  const ch = data.items?.[0];
+  if (!ch) throw new Error('Không tìm thấy kênh.');
+  return ch.contentDetails.relatedPlaylists.uploads;
+}
+
+async function fetchLatestVideos(playlistId, maxResults = 12) {
+  const url = new URL('https://www.googleapis.com/youtube/v3/playlistItems');
+  url.search = new URLSearchParams({
+    part: 'snippet,contentDetails',
+    playlistId,
+    maxResults,
+    key: API_KEY
+  });
+  const r = await fetch(url);
+  const data = await r.json();
+  return (data.items || []).map(it => ({
+    id: it.contentDetails.videoId,
+    title: it.snippet.title,
+    thumb: it.snippet.thumbnails?.high?.url || it.snippet.thumbnails?.medium?.url,
+  }));
+}
+
+function renderGrid(videos) {
+  const grid = document.getElementById('yt-grid');
+  grid.innerHTML = '';
+  videos.forEach(v => {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.style.position='relative';
+    card.style.paddingTop='56.25%';
+    card.style.border='1px solid #e5e7eb33';
+    card.style.borderRadius='12px';
+    card.style.overflow='hidden';
+    card.style.background='#000';
+    card.style.cursor='pointer';
+    card.setAttribute('aria-label', v.title);
+
+    const img = new Image();
+    img.src = v.thumb;
+    img.alt = '';
+    img.loading = 'lazy';
+    Object.assign(img.style, {position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'});
+    card.appendChild(img);
+
+    const cap = document.createElement('div');
+    cap.textContent = v.title;
+    Object.assign(cap.style, {
+      position:'absolute',left:'8px',right:'8px',bottom:'8px',
+      background:'linear-gradient(transparent, rgba(0,0,0,.7))',
+      color:'#fff',fontSize:'14px',padding:'24px 8px 8px',lineHeight:'1.3'
+    });
+    card.appendChild(cap);
+
+    card.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1`;
+      iframe.title = v.title;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      Object.assign(iframe.style, {position:'absolute',inset:0,width:'100%',height:'100%',border:'0'});
+      card.replaceChildren(iframe);
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+(async () => {
+  try {
+    const uploads = await fetchUploadsPlaylistId(HANDLE);
+    const vids = await fetchLatestVideos(uploads, 12);
+    renderGrid(vids);
+  } catch (e) {
+    console.error(e);
+    document.getElementById('yt-grid').innerHTML =
+      `<p>Không tải được video. <a href="https://www.youtube.com/${HANDLE}" target="_blank" rel="noopener">Xem kênh trên YouTube</a>.</p>`;
+  }
+})();
+</script>
+
+
+    <footer>
+        <p>&copy; 2025 Genshin Impact Fan Site. Mọi quyền được bảo lưu.</p>
+    </footer>
+    <a href="#main-content" class="back-to-top">↑</a>
+    <script src="script.js"></script>
+    <script>
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+                document.body.classList.add('scrolled');
+            } else {
+                backToTop.classList.remove('visible');
+                document.body.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
